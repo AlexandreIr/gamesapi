@@ -1,0 +1,22 @@
+{
+  "name": "game-api",
+  "version": "1.0.0",
+  "description": "a little game api",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "AlexandreIr",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql3": "^0.6.0",
+    "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
