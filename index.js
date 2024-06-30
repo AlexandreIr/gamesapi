@@ -1,19 +1,23 @@
 const express = require('express');
 const app = express();
 const bodyparser = require('body-parser');
+
 const port = 3002;
 const Game = require('./model/games/Game');
+const User = require('./model/users/User');
+
+const jwtToken = require('./middlewares/jwtToken');
+
+
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-
-const jwtSecret = 'asfafbhuy1k34208@4&';
 
 app.use(cors());
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));
 
-app.get('/', async (req, res)=>{
+app.get('/', jwtToken, async (req, res)=>{
     const games = await Game.findAll();
     res.status(200).json(games);
 });
@@ -75,7 +79,7 @@ app.post('/auth', (req, res)=>{
         if(err){
             res.status(400).json({err:"Erro, tente novamente"});
         } else {
-            res.status(200).json({token:"Tudo certo"});
+            res.status(200).json({token});
         }
     });
 });
